@@ -129,13 +129,28 @@ class RecetaSeeder extends Seeder
         ];
 
         foreach ($recetas as $receta) {
+            $informacionJSON = [
+                'description'  => $receta['description'],
+                'ingredients'  => $receta['ingredients'],
+                'instructions' => $receta['instructions'],
+                'portions'     => $receta['portions']
+            ];
+            $caloriasEstimadas = match($receta['id']) {
+                1 => 350,
+                2 => 280,
+                3 => 420,
+                4 => 390,
+                5 => 190,
+                default => 300
+            };
+
             DB::table('recetas')->updateOrInsert(
                 ['id' => $receta['id']],
                 [
                     'name'        => $receta['name'],
-                    'calorias'    => $receta['calorias'],
+                    'calorias'    => $caloriasEstimadas,
                     'is_active'   => $receta['is_active'],
-                    'informacion' => json_encode($receta['informacion'], JSON_UNESCAPED_UNICODE),
+                    'informacion' => json_encode($informacionJSON, JSON_UNESCAPED_UNICODE),
                     'created_at'  => $receta['created_at'],
                     'updated_at'  => $receta['updated_at'],
                 ]
