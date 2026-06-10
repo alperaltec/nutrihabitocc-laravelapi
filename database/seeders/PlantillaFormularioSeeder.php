@@ -248,7 +248,7 @@ class PlantillaFormularioSeeder extends Seeder
                 [
                     'name'       => $plantilla['name'],
                     'version'    => $plantilla['version'],
-                    'schema'     => json_encode($plantilla['content_data'], JSON_UNESCAPED_UNICODE),
+                    'content_data'     => json_encode($plantilla['content_data'], JSON_UNESCAPED_UNICODE),
                     'created_at' => $plantilla['created_at'],
                     'updated_at' => $plantilla['updated_at'],
                 ]
