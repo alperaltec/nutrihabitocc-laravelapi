@@ -19,3 +19,4 @@ Schedule::call($enviarRecordatorio)->at('08:00')->timezone('America/Guayaquil');
 Schedule::call($enviarRecordatorio)->at('13:00')->timezone('America/Guayaquil');
 Schedule::call($enviarRecordatorio)->at('17:00')->timezone('America/Guayaquil');
 Schedule::call($enviarRecordatorio)->at('21:00')->timezone('America/Guayaquil');
+Schedule::command('queue:work --stop-when-empty --tries=3 --backoff=10')->everyMinute()->withoutOverlapping();
